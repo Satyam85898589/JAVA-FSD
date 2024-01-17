@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #guesses {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .warm {
+            color: #FF6347;
+        }
+
+        .cold {
+            color: #87CEEB;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Number Guessing Game</h1>
+    <p>Guess a number between 1 and 10:</p>
+    <input type="number" id="guess" min="1" max="10">
+    <button onclick="checkGuess()">Submit Guess</button>
+    <button onclick="resetGame()">Reset Game</button>
+    <div id="result"></div>
+    <div id="guesses"></div>
+
+    <script>
+        let secretNumber = Math.floor(Math.random() * 10) + 1;
+        let attempts = 0;
+        const previousGuesses = [];
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess').value);
+
+            if (isNaN(guess) || guess < 1 || guess > 10) {
+                alert('Please enter a valid number between 1 and 10.');
+                return;
+            }
+
+            attempts++;
+            previousGuesses.push(guess);
+
+            if (guess === secretNumber) {
+                displayResult(`Congratulations! You guessed the correct number ${secretNumber} in ${attempts} attempts.`, 'green');
+                disableInputAndButtons();
+            } else {
+                const hint = guess < secretNumber ? 'higher' : 'lower';
+                const feedback = getFeedback(guess);
+                displayResult(`Incorrect! Try a ${hint} number. Attempts: ${attempts}. ${feedback}`, 'red');
+                displayGuesses();
+            }
+        }
+
+        function getFeedback(guess) {
+            const difference = Math.abs(secretNumber - guess);
+            if (difference === 0) {
+                return 'You are spot on!';
+            } else if (difference <= 2) {
+                return 'Warm!';
+            } else {
+                return 'Cold!';
+            }
+        }
+
+        function displayResult(message, color) {
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = message;
+            resultElement.style.color = color;
+        }
+
+        function displayGuesses() {
+            const guessesElement = document.getElementById('guesses');
+            guessesElement.textContent = `Previous Guesses: ${previousGuesses.join(', ')}`;
+        }
+
+        function disableInputAndButtons() {
+            document.getElementById('guess').disabled = true;
+            document.querySelectorAll('button').forEach(button => button.disabled = true);
+        }
+
+        function resetGame() {
+            document.getElementById('guess').disabled = false;
+            document.getElementById('guess').value = '';
+            document.querySelectorAll('button').forEach(button => button.disabled = false);
+            attempts = 0;
+            previousGuesses.length = 0;
+            document.getElementById('result').textContent = '';
+            document.getElementById('guesses').textContent = '';
+            secretNumber = Math.floor(Math.random() * 10) + 1;
+        }
+    </script>
+</body>
+
+</html>

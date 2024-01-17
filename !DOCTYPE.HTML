@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unique Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+    .left-section {
+      flex: 1;
+      padding: 20px;
+    }
+    .left-section img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .right-section {
+      flex: 1;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    input[type="submit"] {
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #555;
+    }
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to Unique Page</h1>
+</header>
+
+<div class="container">
+  <div class="left-section">
+    <img src="https://himalayanoutback.com/wp-content/uploads/2022/01/unnamed-file.webp">
+  </div>
+  <div class="right-section">
+    <h1 id="random-heading">Random Heading</h1>
+    <div>
+      <form action="login.html">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+      </form>
+      <a href="html.html">Register</a>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>
